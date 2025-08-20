@@ -144,7 +144,7 @@ const Account = () => {
                     </div>
                     <div className="tab-content" id="pills-tabContent">
                         <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-                            <div className="card h-100">
+                            <div className="card h-100 py-4">
                                 <div className="card-body">
                                     <h5 className="card-title roboto">Company/Online School Name *</h5>
                                     <input type="text" placeholder="Online School Name or your name or your business" className="form-control form-control-lg roboto bg-gray mb-4" />

@@ -15,6 +15,10 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+.poppins-one {
+  font-family: 'poppins-semibold',  sans-serif;
+}
+
 .text-19 {
   font-size: 19px;
 }
@@ -340,6 +344,22 @@
   pointer-events: none;
 }
 
+.form-control:focus {
+  border-color: #704BDD !important; /* purple */
+  box-shadow: none !important;      /* remove blue glow */
+  background-color: transparent !important;
+  border-width: 2px;
+}
+
+.form-control {
+  border-color: gray;
+}
+
+.gap-10 {
+  gap: 150px !important;
+}
+
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -382,8 +402,8 @@
   background-color: black !important; /* black */
 }
 
-.ml-40{
-  margin-left: 40px;
+.ml-5{
+  margin-left: 5px;
 }
 .w-80p{
   width: 80px;
@@ -585,6 +605,100 @@
 }
 
 .px-20 {
-  padding-left: 5vw;
-  padding-right: 5vw;
+  padding-left: 5vw !important;
+  padding-right: 5vw !important;
+}
+
+
+.px-22 {
+  padding-left: 6vw !important;
+  padding-right: 6vw !important;
+}
+
+@media (max-width: 1600px) {
+  .px-22 {
+    padding-left: 2vw !important;
+    padding-right: 2vw !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .px-22 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}
+
+.px-30 {
+  padding-left: 200px !important;
+  padding-right: 150px !important;
+}
+
+@media (max-width: 990px) {
+  .px-30 {
+    padding-left: 50px;
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 1460px) {
+  .gap-10{
+    gap: 50px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .signup-img{
+    width: 25vw !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .signup-small-top-img{
+    width: 75vw !important;
+  }
+}
+
+@media (max-width: 1280px) {
+  .signin-img{
+    width: 90vw !important;
+  }
+}
+
+.signin-top-img{
+    width: 90vw !important;
+    padding: 10px;
+  }
+
+@media (max-width: 991px) {
+.signin-lg-mt {
+    margin-top: 300px;
+  }
+}
+
+@media (max-width: 575px) {
+.signin-lg-mt {
+    margin-top: 0px;
+  }
+  .signin-welcome{
+    font-size: 24px;
+  }
+}
+
+.dark-blue {
+  color: #1B356B;
+}
+
+.fs-45 {
+  font-size: 45px;
+}
+
+.ourterms-title {
+  margin-bottom: -600px;
+  margin-left: 30vw;
+  padding-top: 6vh;
+}
+
+.w-900 {
+  width: 920px;
 }

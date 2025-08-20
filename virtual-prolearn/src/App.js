@@ -6,6 +6,7 @@ import PrivateRoute from './component/PrivateRoute';
 import { AuthProvider } from './context/Authcontext';
 
 import Homepage from './layout/Homepage';
+import Ourterms from './layout/Ourterms';
 import Register from './auth/Register';
 import Signin from './auth/Signin';
 import Home from './dashboard/Home';
@@ -17,6 +18,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path='/' element = {< Homepage/>} />
+          <Route path='/our-terms' element = {< Ourterms/>} />
           <Route path='/register' element = {< Register/>} />
           <Route path='/signin' element = {< Signin/>} />
 

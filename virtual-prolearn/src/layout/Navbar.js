@@ -9,7 +9,7 @@ const Navbar = () => {
                         src="../../img/VPL Logo-Evgenia-xx.avif"
                         alt="Logo"
                         height="65"
-                        className="d-none d-sm-block"
+                        className="d-none d-md-block"
                     />
                 </Link>
                 <button
