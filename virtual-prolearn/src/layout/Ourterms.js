@@ -10,6 +10,7 @@ const Ourterms = () => {
                         <h1 className="text-4xl poppins-one fw-bold fs-45 dark-blue">
                             Terms of Use & Privacy Policy
                         </h1>
+                        <img src="../../img/Illustration - Header Terms and Conditions.avif" />
                     </div>
                 </div>
                 <div className="relative w-full h-[667px] overflow-hidden ">

@@ -651,11 +651,21 @@
   .signup-img{
     width: 25vw !important;
   }
-}
 
-@media (max-width: 576px) {
+  .px-30{
+    padding-left: 30px !important;
+    padding-right: 40px !important;
+  }
+
   .signup-small-top-img{
     width: 75vw !important;
+  }
+}
+
+@media (max-width: 780px) {
+  .px-30{
+    padding-left: 50px !important;
+    padding-right: 80px !important;
   }
 }
 
@@ -666,7 +676,7 @@
 }
 
 .signin-top-img{
-    width: 90vw !important;
+    width: 80vw !important;
     padding: 10px;
   }
 
