@@ -6,7 +6,6 @@ import { authFetch } from "../auth/Auth";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const Account = () => {
-    const { token } = useContext(AuthContext);
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");

@@ -7,7 +7,7 @@ const Sectthreecard = ({ image, title, contents }) => {
             <div className="text-center poppins fw-bold">
                 <span style={styles.title}>{title}</span>
             </div>
-            <div className="d-flex flex-row align-items-center justify-content-center montserrat" >
+            <div className="d-flex flex-row align-items-center justify-content-center montserrat text-center" >
                 <span style={styles.contents}>{contents}</span>
             </div>
         </div>

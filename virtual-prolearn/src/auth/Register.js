@@ -14,6 +14,7 @@ const Register = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [touched, setTouched] = useState({});
 
     const pwdRef = useRef(null);
     const cpwdRef = useRef(null);
@@ -25,7 +26,7 @@ const Register = () => {
         const nameRegex = /^[A-Za-z\s]{2,}$/;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const passwordRegex =
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
 
         switch (name) {
             case "first_name":
@@ -77,11 +78,16 @@ const Register = () => {
     };
 
     const handleBlur = (e) => {
-        const { name, value } = e.target;
-        setErrors((prev) => ({
-            ...prev,
-            [name]: validateField(name, value),
-        }));
+        const { name } = e.target;
+        setTouched((prev) => ({ ...prev, [name]: true }));
+
+        // Only validate if user actually typed something
+        if (form[name].trim() !== "") {
+            setErrors((prev) => ({
+                ...prev,
+                [name]: validateField(name, form[name]),
+            }));
+        }
     };
 
     const submit = async (e) => {
@@ -131,7 +137,7 @@ const Register = () => {
                         <img src="../../img/signupLabel.0733dd0e.svg" className="signup-img" />
                     </div>
                 </div>
-                <form onSubmit={submit} className=" p-3 " >
+                <form onSubmit={submit}  >
                     <div>
                         <div className="d-flex flex-xxl-row flex-column gap-4 mb-3 ">
                             <div className="d-flex flex-column justify-content-start w-100 ">
@@ -141,7 +147,7 @@ const Register = () => {
                                         value={form.first_name} onChange={handleChange} onBlur={handleBlur} />
                                     <i className="bi bi-person-circle position-absolute email-icon" />
                                 </div>
-                                {errors.first_name && <small className="text-danger mb-0 roboto">{errors.first_name}</small>}
+                                {touched.first_name && errors.first_name && (<small className="text-danger mb-0 roboto">{errors.first_name}</small>)}
 
                             </div>
                             <div className="d-flex flex-column justify-content-start w-100 ">
@@ -162,7 +168,7 @@ const Register = () => {
                                     value={form.email} onChange={handleChange} onBlur={handleBlur} />
                                 <i className="bi bi-envelope-fill position-absolute email-icon" />
                             </div>
-                            {errors.email && <p className="text-danger roboto mb-0">{errors.email}</p>}
+                            {touched.email && errors.email && (<p className="text-danger roboto mb-0">{errors.email}</p> )}
                         </div>
 
                         <div className="mb-3">
@@ -171,10 +177,10 @@ const Register = () => {
                                 <input type={showPassword ? "text" : "password"}
                                     id="passwordInput" className=" form-control form-control-lg roboto " ref={pwdRef} name="password"
                                     value={form.password} onChange={handleChange} onBlur={handleBlur} minLength={8} required />
-                                <i className={`bi ${showPassword ? "bi-eye-slash-fill" : "bi-eye-fill"} position-absolute pass-icon`}
+                                <i className={`bi ${showPassword ? "bi-eye-fill" : "bi-eye-slash-fill"} position-absolute pass-icon`}
                                     onClick={() => setShowPassword((prev) => !prev)} role="button" aria-label="Toggle password visibility" />
                             </div>
-                            {errors.password && <p className="text-danger roboto mb-0 ">{errors.password}</p>}
+                            {touched.password && errors.password && (<p className="text-danger roboto mb-0 ">{errors.password}</p>)}
                         </div>
 
                         <div className="mb-3">
@@ -183,7 +189,7 @@ const Register = () => {
                                 <input type={showConfirmPassword ? "text" : "password"}
                                     id="confirmpasswordInput" className=" form-control form-control-lg roboto " ref={cpwdRef}
                                     name="confirm_password" value={form.confirm_password} onChange={handleChange} onBlur={handleBlur} minLength={8} required />
-                                <i className={`bi ${showConfirmPassword ? "bi-eye-slash-fill" : "bi-eye-fill"} position-absolute pass-icon`}
+                                <i className={`bi ${showConfirmPassword ? "bi-eye-fill" : "bi-eye-slash-fill"} position-absolute pass-icon`}
                                     onClick={() => setShowConfirmPassword((prev) => !prev)} role="button" aria-label="Toggle confirm password visibility" />
                             </div>
                             {errors.confirm_password && <p className="text-danger roboto mb-0 ">{errors.confirm_password}</p>}

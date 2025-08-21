@@ -19,7 +19,7 @@ const styles = {
     box: {
         backgroundColor: "#E4E9FF",
         width: 470,
-        height: 670,
+        height: 680,
         borderRadius: "30px",
         padding: 20,
     },

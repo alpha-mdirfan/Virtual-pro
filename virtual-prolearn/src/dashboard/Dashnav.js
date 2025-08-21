@@ -33,9 +33,9 @@ const Dashnav = () => {
                         <img src="../../img/user.73011e17.png" alt="Logo" height="25" className="bg-gray mx-1"/>ACCOUNT
                     </button>
                     {open && (
-                        <div className="position-absolute bg-white shadow-sm sectthree ml-40 w-80p ">
-                            <button className=" text-start px-2 py-1 bg-white border-0 roboto-1" onClick={settings}>Settings</button>
-                            <button className=" text-start px-2 py-1 bg-white border-0 roboto-1" onClick={logout}>Logout</button>
+                        <div className="position-absolute bg-white ml-40 w-80p d-flex flex-column py-2 ">
+                            <button className=" text-center mx-2 py-1 bg-white border-0 roboto-1 menu-btn" onClick={settings}>Settings</button>
+                            <button className=" text-center mx-2 py-1 bg-white border-0 roboto-1 menu-btn" onClick={logout}>Logout</button>
                         </div>
                     )}
                 </div>

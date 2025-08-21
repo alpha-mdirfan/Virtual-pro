@@ -240,24 +240,24 @@ const Homepage = () => {
                             <div>
                                 <div className='five-input-first d-flex flex-row justify-content-between'>
                                     <div className='d-flex flex-column justify-content-start'>
-                                        <h5 className='poppins'>First name</h5>
-                                        <input type="text" placeholder="Enter your first name" className='p-2 d-flex flex-row five-input-name' />
+                                        <h5 className='montserrat fw-light'>First name</h5>
+                                        <input type="text" placeholder="Enter your first name" className='p-2 d-flex flex-row five-input-name roboto' />
                                     </div>
-                                    <div className='five-name'>
-                                        <h5 className='poppins'>Email *</h5>
-                                        <input type="text" placeholder="Enter your email" className='five-input-name' />
+                                    <div className='d-flex flex-column justify-content-start'>
+                                        <h5 className='montserrat fw-light'>Email *</h5>
+                                        <input type="text" placeholder="Enter your email" className=' p-2 five-input-name roboto' />
                                     </div>
                                 </div>
                                 <div className='five-input-second'>
-                                    <h5 className='poppins'>Subject</h5>
-                                    <input type="text" placeholder="e.g.,Support" className='five-input-sub p-2' />
+                                    <h5 className='montserrat fw-light'>Subject</h5>
+                                    <input type="text" placeholder="e.g.,Support" className='five-input-sub p-2 roboto' />
                                 </div>
                                 <div>
-                                    <h5 className='poppins'>Write a message</h5>
-                                    <textarea placeholder="Enter text here" rows={3} className='five-input-message p-2 poppins' />
+                                    <h5 className='montserrat fw-light'>Write a message</h5>
+                                    <textarea placeholder="Enter text here" rows={3} className='five-input-message p-2 poppins text-gray' />
                                 </div>
                             </div>
-                            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                            <div className='d-flex flex-row justify-content-center mt-2' >
                                 <button className='five-send-button poppins text-white border-0'>Send</button>
                             </div>
                         </div>
@@ -265,13 +265,10 @@ const Homepage = () => {
                 </div>
             </section>
             <sectoin>
-                <div style={{ backgroundColor: "#E7E7EB", width: "100%", height: "84px" }}>
+                <div className='foot w-100' >
                     <div>
-                        <div style={{
-                            display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "center", color: "#1B356B",
-                            padding: "25px 10px"
-                        }}>
-                            <span style={{ fontFamily: "poppins-extralight, poppins, sans-serif", fontSize: "18px", }}>© by Virtual Pro Learn, LLC</span>
+                        <div className='d-flex flex-column justify-content-start align-items-center homepage-foot' >
+                            <span className='montserrat text-18 fw-light' >© by Virtual Pro Learn, LLC</span>
                         </div>
                     </div>
                 </div>

@@ -104,9 +104,9 @@ const Signin = () => {
         input.type = input.type === "password" ? "text" : "password";
         const icon = document.querySelector("#passwordInput + .bi");
         if (input.type === "text") {
-            icon.classList.replace("bi-eye-fill", "bi-eye-slash-fill");
-        } else {
             icon.classList.replace("bi-eye-slash-fill", "bi-eye-fill");
+        } else {
+            icon.classList.replace("bi-eye-fill", "bi-eye-slash-fill");
         }
     };
     return (
@@ -132,7 +132,6 @@ const Signin = () => {
                             <span className="roboto mb-2">Email Address</span>
                             <div className="position-relative mb-2">
                                 <input type="email" name="email" className="form-control form-control-lg roboto"
-                                    // value={email} onChange={(e) => setEmail(e.target.value)} required />
                                     value={email} onChange={handleChange} onBlur={handleBlur} required />
                                 <i className="bi bi-envelope-fill position-absolute email-icon"></i>
                             </div>
@@ -144,7 +143,7 @@ const Signin = () => {
                             <div className="position-relative mb-3">
                                 <input type="password" name="password"  id="passwordInput" className="form-control form-control-lg roboto "
                                     value={password} onChange={handleChange} onBlur={handleBlur} required />
-                                <i className="bi bi-eye-fill position-absolute pass-icon" onClick={togglePassword} />
+                                <i className="bi bi-eye-slash-fill position-absolute pass-icon" onClick={togglePassword} />
                             </div>
                             {errors.password && <p className="text-danger roboto mb-0">{errors.password}</p>}
                             <div className="d-flex flex-row justify-content-between">
