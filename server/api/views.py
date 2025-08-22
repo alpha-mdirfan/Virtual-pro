@@ -5,6 +5,8 @@ from .serializers import RegisterSerializer, UserOutSerializer
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from .serializers import ChangePasswordSerializer
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.decorators import api_view, permission_classes, parser_classes
 
 class RegisterView(APIView):
     authentication_classes = []  # open endpoint for sign up
@@ -21,6 +23,7 @@ class MeView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request):
         user = request.user
+        
         return Response({
             "first_name": user.first_name,
             "last_name": user.last_name,
@@ -51,3 +54,16 @@ class DeleteAccountView(APIView):
         user = request.user
         user.delete()
         return Response({"detail": "Account deleted successfully"}, status=status.HTTP_200_OK)
+    
+class AvatarUploadView(APIView):
+    permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]
+
+    def post(self, request):
+        profile = request.user.profile  # ✅ get related Profile
+        file = request.FILES.get('avatar')
+        if file:
+            profile.avatar = file
+            profile.save()
+            return Response({"message": "Avatar uploaded"})
+        return Response({"error": "No file provided"}, status=400)

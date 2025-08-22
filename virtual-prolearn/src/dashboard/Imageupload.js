@@ -4,17 +4,9 @@ const Imgup = () => {
     const [preview, setPreview] = useState(null); // start with null
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setPreview(reader.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
+    const [uploading, setUploading] = useState(false);
+    const [uploadError, setUploadError] = useState("");
+    const [uploadSuccess, setUploadSuccess] = useState("");
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -24,6 +16,7 @@ const Imgup = () => {
                 if (!res.ok) throw new Error("Failed to fetch user data");
                 setFirstName(data.first_name);
                 setLastName(data.last_name);
+                if (data.avatar) setPreview(data.avatar); // existing avatar
             } catch (err) {
                 console.error(err.message);
             }
@@ -31,6 +24,61 @@ const Imgup = () => {
 
         fetchUserData();
     }, []);
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+            const cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + "=")) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie("csrftoken");
+
+    const handleImageChange = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setPreview(reader.result);
+        };
+        reader.readAsDataURL(file);
+
+        // Upload to backend
+        const formData = new FormData();
+        formData.append("avatar", file); // 'avatar' is the field name your backend expects
+
+        setUploading(true);
+        setUploadError("");
+        setUploadSuccess("");
+
+        try {
+            const res = await authFetch("http://localhost:8000/api/upload-avatar/", {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": csrftoken
+                },
+                body: formData,
+            });
+
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.message || "Upload failed");
+            setUploadSuccess("Avatar uploaded successfully!");
+        } catch (err) {
+            setUploadError(err.message || "Upload failed");
+        } finally {
+            setUploading(false);
+        }
+    };
 
     return (
         <div className="d-flex flex-row justify-content-between px-2">
@@ -47,10 +95,13 @@ const Imgup = () => {
                     {/* Label below the box */}
                 </div>
                 <div >
-                    <p className="ml-5 roboto fs-5 fw-bold my-0"> { firstName + " " + lastName }</p>
+                    <p className="ml-5 roboto fs-5 fw-bold my-0"> {firstName + " " + lastName}</p>
                     <span className="roboto d-block cursor-pointer pb-5" onClick={() => document.getElementById("imageUpload").click()} >
                         <i class="bi bi-pencil font-14"></i>Add Logo or Avatar
                     </span>
+                    {uploading && <p className="roboto text-info">Uploading...</p>}
+                    {uploadError && <p className="roboto text-danger">{uploadError}</p>}
+                    {uploadSuccess && <p className="roboto text-success">{uploadSuccess}</p>}
                 </div>
             </div>
             <div>

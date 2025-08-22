@@ -3,6 +3,10 @@ import os
 from dotenv import load_dotenv
 from datetime import timedelta
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 # Load environment variables from .env
 load_dotenv()
 
@@ -52,9 +56,9 @@ CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 
 # REST framework + JWT
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 }
 
 SIMPLE_JWT = {

@@ -81,3 +81,8 @@ class ChangePasswordSerializer(serializers.Serializer):
         user.set_password(new_password)   # 🔑 updates password hash
         user.save()
         return user
+    
+class AvatarUploadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['avatar']  # Make sure your User model has an avatar ImageField
